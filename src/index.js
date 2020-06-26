@@ -4,10 +4,11 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
 const TodoList = () => {
+  const items = ["Refresh React", "Build Awesoe App"];
   return (
     <ul>
-      <li>Refresh Reach</li>
-      <li>Build Awesome App</li>
+      <li>{items[0]}</li>
+      <li>{items[1]}</li>
     </ul>
   );
 };
@@ -21,8 +22,13 @@ const SearchPanel = () => {
 };
 
 const App = () => {
+  const loginBox = <p>Log in</p>;
+  const isLoggedIn = true;
+  const welcomeBox = <p>Welcome Back</p>;
   return (
     <div>
+      {isLoggedIn ? welcomeBox : loginBox}
+      <span>{new Date().toString()}</span>
       <AppHeader />
       <SearchPanel />
       <TodoList />
