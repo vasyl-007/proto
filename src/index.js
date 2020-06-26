@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
 const TodoList = () => {
-  const items = ["Refresh React", "Build Awesoe App"];
+  const items = ["Refresh React", "Build Awesome App"];
   return (
     <ul>
       <li>{items[0]}</li>
@@ -18,15 +18,23 @@ const AppHeader = () => {
 };
 
 const SearchPanel = () => {
-  return <input placeholder="Search" />;
+  const searchText = "Type here to search";
+  const searchStyle = {
+    fontSize: "22px",
+  };
+  return (
+    <input placeholder={searchText} style={searchStyle} disabled={false} />
+  );
 };
 
 const App = () => {
   const loginBox = <p>Log in</p>;
   const isLoggedIn = true;
   const welcomeBox = <p>Welcome Back</p>;
+  const value = "<script>alert('')</script>"; //* не тормозит работу в JSX (в HTML код бы сработал) /*
   return (
     <div>
+      {value}
       {isLoggedIn ? welcomeBox : loginBox}
       <span>{new Date().toString()}</span>
       <AppHeader />
