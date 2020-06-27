@@ -2,32 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
-const TodoList = () => {
-  const items = ["Refresh React", "Build Awesome App"];
-  return (
-    <ul>
-      <li>{items[0]}</li>
-      <li>{items[1]}</li>
-    </ul>
-  );
-};
-
-const AppHeader = () => {
-  return <h2>Task Manager</h2>;
-};
-
-const SearchPanel = () => {
-  const searchText = "Type here to search";
-  const searchStyle = {
-    fontSize: "22px",
-  };
-  return (
-    <input placeholder={searchText} style={searchStyle} disabled={false} />
-  );
-};
+import { TodoList } from "./components/TodoList";
+import { AppHeader } from "./components/AppHeader";
+import { SearchPanel } from "./components/SearchPanel";
 
 const App = () => {
+  const todoData = [
+    { label: "Drink Coffee", important: false },
+    { label: "Make Awesome App", important: true },
+    { label: "Drink Tea", important: false },
+  ];
   const loginBox = <p>Log in</p>;
   const isLoggedIn = true;
   const welcomeBox = <p>Welcome Back</p>;
@@ -39,7 +23,7 @@ const App = () => {
       <span>{new Date().toString()}</span>
       <AppHeader />
       <SearchPanel />
-      <TodoList />
+      <TodoList todos={todoData} />
     </div>
   );
 };
