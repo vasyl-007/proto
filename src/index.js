@@ -1,45 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import { TodoList } from "./components/TodoList";
-import { AppHeader } from "./components/AppHeader";
-import { SearchPanel } from "./components/SearchPanel";
+
+import AppHeader from "./components/AppHeader";
+import SearchPanel from "./components/SearchPanel";
+import TodoList from "./components/TodoList";
+import ItemStatusFilter from "./components/ItemStatusFilter";
+
+import "./index.css";
 
 const App = () => {
   const todoData = [
     { label: "Drink Coffee", important: false, id: "1" },
     { label: "Make Awesome App", important: true, id: "2" },
-    { label: "Drink Tea", important: false, id: "3" },
+    { label: "Have a lunch", important: false, id: "3" },
   ];
-  const loginBox = <p>Log in</p>;
-  const isLoggedIn = true;
-  const welcomeBox = <p>Welcome Back</p>;
-  const value = "<script>alert('')</script>"; //* не тормозит работу в JSX (в HTML код бы сработал) /*
+
   return (
-    <div>
-      {value}
-      {isLoggedIn ? welcomeBox : loginBox}
-      <span>{new Date().toString()}</span>
-      <AppHeader />
-      <SearchPanel />
+    <div className="todo-app">
+      <AppHeader toDo={1} done={3} />
+      <div className="top-panel d-flex">
+        <SearchPanel />
+        <ItemStatusFilter />
+      </div>
+
       <TodoList todos={todoData} />
     </div>
   );
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById("root")
-// );
-
-// const el = React.createElement("h2", null, "Hello React Yoohoo!");
-// console.log("el", el);
-// ReactDOM.render(el, document.getElementById("root"));
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
