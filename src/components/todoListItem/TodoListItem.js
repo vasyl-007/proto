@@ -3,6 +3,20 @@ import React, { Component } from "react";
 import "./TodoListItem.css";
 
 export default class TodoListItem extends Component {
+  //  constructor() {
+  //    super();
+  //    this.onLabelClick = () => {         // 2-ой вариант через constructor
+  //      console.log(`Done: ${this.props.label}`);
+  //    };
+  //  }
+  // onLabelClick() {
+  //   console.log(`Done: ${this.props.label}`);
+  // }
+  onLabelClick = () => {
+    //  3-ий вариант через публичные поля классов - class fields + arrow func - the best
+    console.log(`Done: ${this.props.label}`);
+  };
+
   render() {
     const { label, important = false } = this.props;
     const style = {
@@ -12,7 +26,12 @@ export default class TodoListItem extends Component {
 
     return (
       <span className="todo-list-item">
-        <span className="todo-list-item-label" style={style}>
+        <span
+          className="todo-list-item-label"
+          style={style}
+          onClick={this.onLabelClick}
+          // onClick={this.onLabelClick.bind(this)}    // 1-ый вариант bind - при каждом клике создается новая функция
+        >
           {label}
         </span>
 
