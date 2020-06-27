@@ -8,9 +8,9 @@ import { SearchPanel } from "./components/SearchPanel";
 
 const App = () => {
   const todoData = [
-    { label: "Drink Coffee", important: false },
-    { label: "Make Awesome App", important: true },
-    { label: "Drink Tea", important: false },
+    { label: "Drink Coffee", important: false, id: "1" },
+    { label: "Make Awesome App", important: true, id: "2" },
+    { label: "Drink Tea", important: false, id: "3" },
   ];
   const loginBox = <p>Log in</p>;
   const isLoggedIn = true;
