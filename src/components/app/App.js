@@ -11,10 +11,15 @@ export default class App extends Component {
   maxId = 100;
   state = {
     todoData: [
-      { label: "Drink Coffee", important: false, id: "1" },
-      { label: "Make Awesome App", important: true, id: "2" },
-      { label: "Have a lunch", important: false, id: "3" },
+      this.createTodoItem("Drink Coffe"),
+      this.createTodoItem("Make an Awesome App"),
+      this.createTodoItem("Have a lunch"),
     ],
+    // todoData: [
+    //   { label: "Drink Coffee", important: false, id: "1" },
+    //   { label: "Make an Awesome App", important: true, id: "2" },
+    //   { label: "Have a lunch", important: false, id: "3" },
+    // ],
   };
 
   deleteItem = (id) => {
@@ -38,29 +43,57 @@ export default class App extends Component {
   //       };
   //     });
   //   };
-
-  addItem = (text) => {
-    console.log("Clicked", text);
-    const newItem = {
-      label: text,
+  createTodoItem(label) {
+    return {
+      label,
       important: false,
+      done: false,
       id: this.maxId++,
     };
-    // this.setState(({ todoData }) => {
-    //   const newArr = [newItem, ...todoData];
-    //   return { todoData: newArr };
-    // });
+  }
+
+  addItem = (text) => {
+    const newItem = this.createTodoItem(text);
     this.setState(({ todoData }) => {
       return { todoData: [newItem, ...todoData] };
     });
-    // this.setState(({ todoData }) => [newItem, ...todoData]);
   };
+  //   addItem = (text) => {
+  //     console.log("Clicked", text);
+  //     const newItem = {
+  //       label: text,
+  //       important: false,
+  //       id: this.maxId++,
+  //     };
+  //     // this.setState(({ todoData }) => {
+  //     //   const newArr = [newItem, ...todoData];
+  //     //   return { todoData: newArr };
+  //     // });
+  //     this.setState(({ todoData }) => {
+  //       return { todoData: [newItem, ...todoData] };
+  //     });
+  //     // this.setState(({ todoData }) => [newItem, ...todoData]);
+  //   };
 
   onToggleImportant = (id) => {
     console.log("Toggle important", id);
+    this.setState(({ todoData }) => {});
   };
   onToggleDone = (id) => {
     console.log("Toggle done", id);
+    this.setState(({ todoData }) => {
+      const inx = todoData.findIndex((el) => el.id === id);
+      const oldItem = todoData[inx];
+      const newItem = { ...oldItem, done: !oldItem.done };
+      const newArray = [
+        ...todoData.slice(0, inx),
+        newItem,
+        ...todoData.slice(inx + 1),
+      ];
+      return {
+        todoData: newArray,
+      };
+    });
   };
 
   render() {

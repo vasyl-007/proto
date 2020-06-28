@@ -71,7 +71,7 @@ export default class TodoListItem extends Component {
         <span
           className="todo-list-item-label"
           // style={style}
-          onClick={onToggleImportant}
+          onClick={onToggleDone}
           // onClick={this.onLabelClick.bind(this)}    // 1-ый вариант bind - при каждом клике создается новая функция
         >
           {label}
