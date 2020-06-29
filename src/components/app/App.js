@@ -11,9 +11,9 @@ export default class App extends Component {
   maxId = 100;
   state = {
     todoData: [
-      this.createTodoItem("Drink Coffee"),
-      this.createTodoItem("Make an Awesome App"),
-      this.createTodoItem("Have a lunch"),
+      this.createTodoItem("Make a smile - your first task)"),
+      this.createTodoItem("Drink Coffee - the second one"),
+      this.createTodoItem("Start typing your own tasks"),
     ],
     // todoData: [
     //   { label: "Drink Coffee", important: false, id: "1" },

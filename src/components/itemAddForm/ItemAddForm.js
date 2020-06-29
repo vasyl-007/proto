@@ -7,7 +7,7 @@ export default class ItemAddForm extends Component {
   };
   onLabelChange = (e) => {
     const { value } = e.target;
-    console.log("Add", value);
+    // console.log("Add", value);
     this.setState({
       label: value,
     });
@@ -20,7 +20,7 @@ export default class ItemAddForm extends Component {
   };
   render() {
     const { label } = this.state;
-    const { onAddItem } = this.props;
+    // const { onAddItem } = this.props;
     return (
       <form className="item-add-form d-flex" onSubmit={this.onSubmit}>
         <input
@@ -32,7 +32,7 @@ export default class ItemAddForm extends Component {
         />
         <button
           className="btn btn-outline-secondary"
-          onClick={() => onAddItem("Hello World")}
+          // onClick={() => onAddItem("Hello World")}
         >
           Add task
         </button>
