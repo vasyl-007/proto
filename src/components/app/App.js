@@ -77,28 +77,53 @@ export default class App extends Component {
 
   onToggleImportant = (id) => {
     console.log("Toggle important", id);
-    this.setState(({ todoData }) =>
-      todoData.filter((item) =>
-        item.id === id ? { ...item, important: !item.important } : item
-      )
-    );
-  };
-  onToggleDone = (id) => {
-    console.log("Toggle done", id);
     this.setState(({ todoData }) => {
-      const inx = todoData.findIndex((el) => el.id === id);
-      const oldItem = todoData[inx];
-      const newItem = { ...oldItem, done: !oldItem.done };
-      const newArray = [
-        ...todoData.slice(0, inx),
-        newItem,
-        ...todoData.slice(inx + 1),
-      ];
       return {
-        todoData: newArray,
+        todoData: this.toggleProperty(todoData, id, "important"),
       };
     });
   };
+  //   onToggleImportant = (id) => {
+  //     console.log("Toggle important", id);
+  //     this.setState(({ todoData }) => {
+  //       return {
+  //         todoData: todoData.map((item) =>
+  //           item.id === id ? { ...item, important: !item.important } : item
+  //         ),
+  //       };
+  //     });
+  //   };
+  //   onToggleDone = (id) => {
+  //     console.log("Toggle done", id);
+  //     this.setState(({ todoData }) => {
+  //       const inx = todoData.findIndex((el) => el.id === id);
+  //       const oldItem = todoData[inx];
+  //       const newItem = { ...oldItem, done: !oldItem.done };
+  //       const newArray = [
+  //         ...todoData.slice(0, inx),
+  //         newItem,
+  //         ...todoData.slice(inx + 1),
+  //       ];
+  //       return {
+  //         todoData: newArray,
+  //       };
+  //     });
+  //   };
+  onToggleDone = (id) => {
+    console.log("Toggle done", id);
+    this.setState(({ todoData }) => {
+      return {
+        todoData: this.toggleProperty(todoData, id, "done"),
+      };
+    });
+  };
+
+  toggleProperty(arr, id, propName) {
+    const inx = arr.findIndex((el) => el.id === id);
+    const oldItem = arr[inx];
+    const newItem = { ...oldItem, [propName]: !oldItem[propName] };
+    return [...arr.slice(0, inx), newItem, ...arr.slice(inx + 1)];
+  }
 
   render() {
     const { todoData } = this.state;
