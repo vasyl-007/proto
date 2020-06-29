@@ -77,7 +77,11 @@ export default class App extends Component {
 
   onToggleImportant = (id) => {
     console.log("Toggle important", id);
-    this.setState(({ todoData }) => {});
+    this.setState(({ todoData }) =>
+      todoData.filter((item) =>
+        item.id === id ? { ...item, important: !item.important } : item
+      )
+    );
   };
   onToggleDone = (id) => {
     console.log("Toggle done", id);
@@ -98,10 +102,12 @@ export default class App extends Component {
 
   render() {
     const { todoData } = this.state;
+    const doneCount = todoData.filter((el) => el.done === true).length;
+    const todoCount = todoData.length - doneCount;
 
     return (
       <div className="todo-app">
-        <AppHeader toDo={1} done={3} />
+        <AppHeader toDo={todoCount} done={doneCount} />
         <div className="top-panel d-flex">
           <SearchPanel />
           <ItemStatusFilter />
